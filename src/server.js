@@ -10,14 +10,14 @@ const sqlite = require('./connectors/sqlite');
 // import models
 const OrdersAPI = require('./models/order');
 
-const server = new ApolloServer({ 
-  typeDefs, 
-  resolvers, 
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
   dataSources: () => ({
     ordersAPI: new OrdersAPI(),
   }),
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`)
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
 });
